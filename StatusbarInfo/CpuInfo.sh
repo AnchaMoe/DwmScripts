@@ -1,5 +1,9 @@
 #!/bin/bash
+# This script can compute the cpu usage.
+# In default, you should run "CpuInfo_Get" before "CpuInfo" and run "CpuInfo_Refresh" after "CpuInfo".
 
+# Get cpu status, from $2 to $8 are user,nice,system,idle,iowait,irq,softirq.
+# Cpu time = user+nice+system+idle+iowait+irq+softirq.
 function CpuInfo_Get {
 	CpuLog=`cat /proc/stat | grep "cpu " | awk '{print $2" "$3" "$4" "$5" "$6" "$7" "$8}'`
 	CpuIDLE=`echo "$CpuLog" | awk '{print $4}'`
@@ -16,6 +20,9 @@ function CpuInfo_Refresh {
 
 
 
+# Cpu time slice = new cpu time - old cpu time
+# Idle time slice = new idle time - old idle time
+# Cpu total usage = (cpu time slice - idle time slice) / cpu time slice * 100
 function CpuInfo_Compute {
 	local DifferenceIDLE=$((CpuIDLE-Old_CpuIDLE))
 	local DifferenceTotal=$((CpuTotal-Old_CpuTotal))
@@ -24,7 +31,7 @@ function CpuInfo_Compute {
 
 
 
-# Delete "#" in function if you want to use this function alone.
+# You should uncomment the top two lines of code in function if you want to use this function alone.
 function CpuInfo {
 #	CpuInfo_Refresh
 #	CpuInfo_Get
