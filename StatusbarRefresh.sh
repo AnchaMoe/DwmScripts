@@ -17,7 +17,7 @@ while true
 do
 	CpuInfo_Get
 	NetInfo_Get
-	xsetroot -name "`NameInfo` `CpuInfo` `MemInfo` `NetInfo` `VolInfo` `TimeInfo`"
+	xsetroot -name "Hello `NameInfo` `CpuInfo` `MemInfo` `NetInfo` `VolInfo` `TimeInfo`"
 	sleep 1s
 	CpuInfo_Refresh
 	NetInfo_Refresh
