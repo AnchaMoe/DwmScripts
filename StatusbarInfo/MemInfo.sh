@@ -1,4 +1,5 @@
 #!/bin/bash
+# This function can compute the memory usage.
 
 function MemInfo {
 	MemTotal=`cat /proc/meminfo | grep "MemTotal:" | awk '{print $2}'`

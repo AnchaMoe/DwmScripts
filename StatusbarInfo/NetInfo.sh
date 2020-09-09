@@ -1,4 +1,6 @@
 #!/bin/bash
+# This script can compute the network usage.
+# In default, you should run "NetInfo_Get" before "NetInfo" and run "NetInfo_Refresh" after "NetInfo".
 
 function NetInfo_Get {
 	NetInterface=`ip route get 8.8.8.8 | awk '{print $5}'`
@@ -14,7 +16,7 @@ function NetInfo_Refresh {
 }
 
 
-
+#This script should be executed once per second, if not, you should change the formula.
 function NetInfo_Compute {
 	local Value=$1
 	local Old_Value=$2
@@ -28,7 +30,7 @@ function NetInfo_Compute {
 
 
 
-# Delete "#" in function if you want to use this function alone.
+# You should uncomment the top two lines of code in function if you want to use this function alone.
 function NetInfo {
 #	NetInfo_Refresh
 #	NetInfo_Get
