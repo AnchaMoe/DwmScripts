@@ -1,6 +1,6 @@
 #!/bin/bash
-#This function can get the date and time with "yyyy-mm-dd hh:mm"
+#This function can get the date and time with "yyyy-mm-dd Sun..Sat hh:mm"
 
 function TimeInfo {
-	echo "$(date +"%F %R")"
+	echo "$(date +"%F %a %R")"
 }
